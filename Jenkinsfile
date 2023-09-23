@@ -2,12 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Git Checkout') {
+        stage('git checkout') {
             steps {
-                git 'https://github.com/jaiswaladi246/CountryBank.git'
+                git 'https://github.com/Thakur156/CountryBank'
             }
         }
-        
         stage('OWASP Dependency Check') {
             steps {
                  dependencyCheck additionalArguments: ' --scan ./ ', odcInstallation: 'DC'
@@ -21,9 +20,9 @@ pipeline {
             }
         }
         
-         stage('Build & deploy') {
+        stage('Build & deploy') {
             steps {
-                 sh "docker-compose up -d"
+                sh "docker-compose up -d"
             }
         }
     }
